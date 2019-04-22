@@ -9,7 +9,6 @@ class Content extends Component {
   };
 
   handleInputChange = ({ target: { value } }) => {
-    console.log(value);
     this.setState({
       name: value
     });
@@ -31,13 +30,7 @@ class Content extends Component {
 
     return (
       <div>
-        <input
-          placeholder="name"
-          ref={input => {
-            this.trackInput = input;
-          }}
-          onChange={this.handleInputChange}
-        />
+        <input placeholder="name" onChange={this.handleInputChange} />
         <button type="submit" onClick={this.handleAddGood.bind(this)}>
           Add +
         </button>
