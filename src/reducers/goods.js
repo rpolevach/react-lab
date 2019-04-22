@@ -1,5 +1,4 @@
 import { ADD_GOOD } from "../constants";
-import { stat } from "fs";
 
 const GOODS = [
   {

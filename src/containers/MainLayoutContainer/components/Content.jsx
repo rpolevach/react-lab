@@ -25,15 +25,13 @@ class Content extends Component {
     const { name, description } = this.state;
     const { addGood, goods } = this.props;
 
-    console.log(goods.length);
-
     const id = goods[goods.length - 1].id + 1;
-    console.log(id);
 
     addGood(id, name, description);
 
     this.setState({
-      name: ""
+      name: "",
+      description: ""
     });
   };
 
@@ -50,6 +48,11 @@ class Content extends Component {
         <button type="submit" onClick={this.handleAddGood.bind(this)}>
           Add +
         </button>
+        <ul>
+          {goods.map((value, index) => (
+            <li key={index}>{value.name}</li>
+          ))}
+        </ul>
       </div>
     );
   }
