@@ -5,20 +5,32 @@ import { addGood } from "../../../actions/actionCreator";
 
 class Content extends Component {
   state = {
-    name: ""
+    name: "",
+    description: ""
   };
 
-  handleInputChange = ({ target: { value } }) => {
+  handleInputNameChange = ({ target: { value } }) => {
     this.setState({
       name: value
     });
   };
 
-  handleAddGood = () => {
-    const { name } = this.state;
-    const { addGood } = this.props;
+  handleInputDescChange = ({ target: { value } }) => {
+    this.setState({
+      description: value
+    });
+  };
 
-    addGood(name, "", "");
+  handleAddGood = () => {
+    const { name, description } = this.state;
+    const { addGood, goods } = this.props;
+
+    console.log(goods.length);
+
+    const id = goods[goods.length - 1].id + 1;
+    console.log(id);
+
+    addGood(id, name, description);
 
     this.setState({
       name: ""
@@ -30,7 +42,11 @@ class Content extends Component {
 
     return (
       <div>
-        <input placeholder="name" onChange={this.handleInputChange} />
+        <input placeholder="name" onChange={this.handleInputNameChange} />
+        <input
+          placeholder="description"
+          onChange={this.handleInputDescChange}
+        />
         <button type="submit" onClick={this.handleAddGood.bind(this)}>
           Add +
         </button>

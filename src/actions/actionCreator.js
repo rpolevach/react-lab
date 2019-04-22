@@ -1,8 +1,8 @@
 import { ADD_GOOD } from "../constants";
 
-export const addGood = (name, description, price) => ({
+export const addGood = (id, name, description) => ({
   type: ADD_GOOD,
+  id,
   name,
-  description,
-  price
+  description
 });
