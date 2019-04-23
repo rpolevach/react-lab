@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Content from "./components/Content";
+import Header from "./containers/Header";
+import Footer from "./containers/Footer";
+import Content from "../Content/Content";
 
 class MainLayoutContainer extends Component {
   render() {
