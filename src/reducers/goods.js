@@ -1,4 +1,4 @@
-import { ADD_GOOD } from "../constants";
+import { ADD_GOOD, REMOVE_GOOD } from "../constants";
 
 const GOODS = [
   {
@@ -34,6 +34,8 @@ const goods = (state = GOODS, { id, name, description, type }) => {
           description
         }
       ];
+    case REMOVE_GOOD:
+      return [...state].filter(task => task.id !== id);
     default:
       return state;
   }

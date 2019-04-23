@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addGood } from "../../../actions/actionCreator";
+import ListInfo from './containers/ListInfo/ListInfo';
+import { addGood, removeGood } from "../../actions/actionCreator";
 
 class Content extends Component {
   state = {
@@ -39,7 +40,7 @@ class Content extends Component {
   };
 
   render() {
-    const { goods } = this.props;
+    const { goods, removeGood } = this.props;
 
     return (
       <div>
@@ -51,11 +52,7 @@ class Content extends Component {
         <button type="submit" onClick={this.handleAddGood.bind(this)}>
           Add +
         </button>
-        <ul>
-          {goods.map((value, index) => (
-            <li key={index}>{value.name}</li>
-          ))}
-        </ul>
+        <ListInfo goods={goods} removeGood={removeGood}/>
       </div>
     );
   }
@@ -65,5 +62,5 @@ export default connect(
   state => ({
     goods: state.goods
   }),
-  { addGood }
+  { addGood, removeGood }
 )(Content);
