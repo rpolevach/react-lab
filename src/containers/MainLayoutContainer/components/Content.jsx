@@ -26,13 +26,16 @@ class Content extends Component {
     const { addGood, goods } = this.props;
 
     const id = goods[goods.length - 1].id + 1;
+    console.log("name", name);
 
-    addGood(id, name, description);
+    if (name.length > 1 && description.length > 5) {
+      addGood(id, name, description);
 
-    this.setState({
-      name: "",
-      description: ""
-    });
+      this.setState({
+        name: "",
+        description: ""
+      });
+    }
   };
 
   render() {
