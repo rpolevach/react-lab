@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ListInfo from "./containers/ListInfo/ListInfo";
-import InputInfo from "./containers/InputInfo/InputInfo";
+import Modal from "./containers/modal/Modal";
 import { addGood, removeGood } from "../../actions/actionCreator";
 
 class Content extends Component {
   render() {
-    const { goods, removeGood } = this.props;
+    const { goods, addGood, removeGood } = this.props;
 
     return (
       <div>
-        <button>ADD +</button>
+        <Modal addGood={addGood} goods={goods} />
         <ListInfo goods={goods} removeGood={removeGood} />
       </div>
     );
