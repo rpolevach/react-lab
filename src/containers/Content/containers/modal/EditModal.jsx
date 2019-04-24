@@ -27,7 +27,7 @@ class EditModal extends Component {
                 />
               </div>
               <div className="modalFooter">
-                <button onClick={!changeSectionIsOpen}>Cancel</button>
+                <button onClick={changeSectionIsOpen}>Cancel</button>
                 <button onClick={onEditItemAccepted}>Submit</button>
               </div>
             </div>

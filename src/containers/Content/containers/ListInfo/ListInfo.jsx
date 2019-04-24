@@ -45,6 +45,12 @@ class ListInfo extends Component {
     });
   };
 
+  closeChangeSection = () => {
+    this.setState({
+      changeSectionIsOpen: false
+    });
+  };
+
   render() {
     const { goods, removeGood } = this.props;
     const { editName, editDesc } = this.state;
@@ -60,6 +66,7 @@ class ListInfo extends Component {
               removeGood={removeGood}
               id={id}
               editItem={this.editItem}
+              closeChangeSection={this.closeChangeSection}
             />
           ))}
         </ul>
