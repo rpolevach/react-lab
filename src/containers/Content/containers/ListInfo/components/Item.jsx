@@ -9,4 +9,11 @@ const Item = ({ id, name, description, removeGood }) => (
   </li>
 );
 
+Item.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  removeGood: PropTypes.func
+};
+
 export default Item;

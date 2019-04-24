@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ListInfo from "./containers/ListInfo/ListInfo";
 import Modal from "./containers/modal/Modal";
@@ -16,6 +17,12 @@ class Content extends Component {
     );
   }
 }
+
+Content.propTypes = {
+  goods: PropTypes.array,
+  addGood: PropTypes.func,
+  removeGood: PropTypes.func
+};
 
 export default connect(
   state => ({

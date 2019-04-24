@@ -2,57 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import Portal from "./components/Portal";
 
-/* const Modal = ({ title, isOpen, onCancel, onSubmit, addGood, goods }) => {
-  var handleInputNameChange = ({ target: { value } }) => value;
-
-  function handleInputDescChange({ target: { value } }) {
-    return value;
-  }
-
-  var handleAddGood = () => {
-    var name = handleInputNameChange();
-    var description = handleInputDescChange();
-
-    console.log(name, description);
-
-    var id = goods[goods.length - 1].id + 1;
-
-    if (name.length > 1 && description.length > 5) {
-      addGood(id, name, description);
-    }
-  };
-
-  return (
-    console.log(isOpen),
-    (
-      <>
-        {isOpen && (
-          <Portal>
-            <div className="modalOverlay">
-              <div className="modalWindow">
-                <div className="modalHeader">
-                  <div className="modalTitle">{title}</div>
-                </div>
-                <div className="modalBody">
-                  <input placeholder="name" onChange={handleInputNameChange} />
-                  <input
-                    placeholder="description"
-                    onChange={handleInputDescChange}
-                  />
-                </div>
-                <div className="modalFooter">
-                  <button onClick={addGood}>Cancel</button>
-                  <button onClick={handleAddGood}>Submit</button>
-                </div>
-              </div>
-            </div>
-          </Portal>
-        )}
-      </>
-    )
-  );
-}; */
-
 class Modal extends React.Component {
   state = {
     name: "",
@@ -69,13 +18,15 @@ class Modal extends React.Component {
       description: value
     });
 
-  handleAddGood = () => {
+  handleAddGood = ({ key }) => {
     const { name, description } = this.state;
     const { goods, addGood } = this.props;
 
+    console.log(key);
+
     const id = goods[goods.length - 1].id + 1;
 
-    if (name.length > 1 && description.length > 5) {
+    if (name.length > 1 && description.length > 5 && key === "Enter") {
       addGood(id, name, description);
 
       this.setState({
@@ -105,11 +56,16 @@ class Modal extends React.Component {
                     <input
                       placeholder="description"
                       onChange={this.handleInputDescChange}
+                      onKeyPress={this.handleAddGood}
                     />
                   </div>
                   <div className="modalFooter">
                     <button>Cancel</button>
-                    <button onClick={this.handleAddGood}>Submit</button>
+                    <button
+                      onClick={() => this.handleAddGood({ key: "Enter" })}
+                    >
+                      Submit
+                    </button>
                   </div>
                 </div>
               </div>

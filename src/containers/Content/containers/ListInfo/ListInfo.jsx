@@ -16,4 +16,9 @@ const ListInfo = ({ goods, removeGood }) => (
   </ul>
 );
 
+ListInfo.propTypes = {
+  goods: PropTypes.array,
+  removeGood: PropTypes.func
+};
+
 export default ListInfo;
