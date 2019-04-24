@@ -10,12 +10,12 @@
 }
 
 .modalHeader {
-  padding-top: 25px;
   text-align: center;
   font-size: 25px;
 }
 
 .modalBody {
+  padding-top: 15px;
   text-align: center;
 }
 .modalFooter {
