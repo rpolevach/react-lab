@@ -4,10 +4,11 @@ import { connect } from "react-redux";
 import ListInfo from "./containers/ListInfo/ListInfo";
 import Modal from "./containers/modal/Modal";
 import { addGood, removeGood, editGood } from "../../actions/actionCreator";
+import "./styled/Content.css";
 
 class Content extends Component {
   state = {
-    isOpen: false,
+    isOpen: true,
     name: "",
     description: ""
   };
@@ -68,8 +69,10 @@ class Content extends Component {
     const { isOpen } = this.state;
 
     return (
-      <div>
-        <button onClick={this.hanleOpenAddGoodModal}>Add +</button>
+      <div className="Content-section">
+        <button id="createGoodButton" onClick={this.hanleOpenAddGoodModal}>
+          Add +
+        </button>
         <Modal
           addGood={addGood}
           goods={goods}

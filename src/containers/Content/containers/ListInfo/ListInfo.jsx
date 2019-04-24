@@ -51,6 +51,12 @@ class ListInfo extends Component {
     });
   };
 
+  onCloseEditModal = () => {
+    this.setState({
+      changeSectionIsOpen: false
+    });
+  };
+
   render() {
     const { goods, removeGood } = this.props;
     const { editName, editDesc } = this.state;
@@ -78,6 +84,7 @@ class ListInfo extends Component {
           onEditItemAccepted={this.onEditItemAccepted}
           handleOnChangeName={this.handleOnChangeName}
           handleOnChangeDesc={this.handleOnChangeDesc}
+          onCloseEditModal={this.onCloseEditModal}
         />
       </div>
     );

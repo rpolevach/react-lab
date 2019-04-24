@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 import Header from "./containers/Header";
 import Footer from "./containers/Footer";
 import Content from "../Content/Content";
+import "./styled/MainLayout.css";
 
 class MainLayoutContainer extends Component {
   render() {
     return (
-      <div>
+      <div className="mainLayout">
         <Header />
         <Content />
-        <Footer />
       </div>
     );
   }
