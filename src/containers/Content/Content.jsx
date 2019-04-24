@@ -1,99 +1,66 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import ListInfo from "./containers/ListInfo/ListInfo";
-import Modal from "./containers/modal/Modal";
-import { addGood, removeGood, editGood } from "../../actions/actionCreator";
+import ListInfo from './containers/ListInfo/ListInfo';
+import { addGood, removeGood } from "../../actions/actionCreator";
 
 class Content extends Component {
   state = {
-    isOpen: false,
     name: "",
     description: ""
   };
 
-  hanleOpenAddGoodModal = isOpen => {
-    if (this.state.isOpen === false) {
-      isOpen = true;
-
-      this.setState({
-        isOpen: isOpen
-      });
-    }
-  };
-
-  handleInputNameChange = ({ target: { value } }) =>
+  handleInputNameChange = ({ target: { value } }) => {
     this.setState({
       name: value
     });
+  };
 
-  handleInputDescChange = ({ target: { value } }) =>
+  handleInputDescChange = ({ target: { value } }) => {
     this.setState({
       description: value
     });
-
-  handleCloseAddGoodModal = isOpen => {
-    if (this.state.isOpen === true) {
-      isOpen = false;
-
-      this.setState({
-        isOpen: isOpen
-      });
-    }
   };
 
-  handleAddGood = ({ key }) => {
-    console.log(this.props.state);
+  handleAddGood = () => {
     const { name, description } = this.state;
-    const { goods, addGood } = this.props;
-    let id = 1;
+    const { addGood, goods } = this.props;
 
-    if (goods.length != 0) {
-      id = goods[goods.length - 1].id + 1;
-    }
+    const id = goods[goods.length - 1].id + 1;
+    console.log("name", name);
 
-    if (name.length > 1 && description.length > 5 && key === "Enter") {
+    if (name.length > 1 && description.length > 5) {
       addGood(id, name, description);
 
       this.setState({
         name: "",
-        description: "",
-        isOpen: false
+        description: ""
       });
     }
   };
 
   render() {
-    const { goods, addGood, removeGood, editGood } = this.props;
-    const { isOpen } = this.state;
+    const { goods, removeGood } = this.props;
 
     return (
       <div>
-        <button onClick={this.hanleOpenAddGoodModal}>Add +</button>
-        <Modal
-          addGood={addGood}
-          goods={goods}
-          isOpen={isOpen}
-          onClose={this.handleCloseAddGoodModal}
-          handleInputNameChange={this.handleInputNameChange}
-          handleInputDescChange={this.handleInputDescChange}
-          handleAddGood={this.handleAddGood}
+        <input placeholder="name" onChange={this.handleInputNameChange} />
+        <input
+          placeholder="description"
+          onChange={this.handleInputDescChange}
         />
-        <ListInfo goods={goods} removeGood={removeGood} editGood={editGood} />
+        <button type="submit" onClick={this.handleAddGood.bind(this)}>
+          Add +
+        </button>
+        <ListInfo goods={goods} removeGood={removeGood}/>
       </div>
     );
   }
 }
 
-Content.propTypes = {
-  goods: PropTypes.array,
-  addGood: PropTypes.func,
-  removeGood: PropTypes.func
-};
-
 export default connect(
   state => ({
     goods: state.goods
   }),
-  { addGood, removeGood, editGood }
+  { addGood, removeGood }
 )(Content);
