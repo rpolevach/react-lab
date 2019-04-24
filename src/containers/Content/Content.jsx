@@ -1,62 +1,59 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import ListInfo from './containers/ListInfo/ListInfo';
+import ListInfo from "./containers/ListInfo/ListInfo";
+import Modal from "./containers/modal/Modal";
 import { addGood, removeGood } from "../../actions/actionCreator";
 
 class Content extends Component {
   state = {
-    name: "",
-    description: ""
+    isOpen: false
   };
 
-  handleInputNameChange = ({ target: { value } }) => {
-    this.setState({
-      name: value
-    });
-  };
-
-  handleInputDescChange = ({ target: { value } }) => {
-    this.setState({
-      description: value
-    });
-  };
-
-  handleAddGood = () => {
-    const { name, description } = this.state;
-    const { addGood, goods } = this.props;
-
-    const id = goods[goods.length - 1].id + 1;
-    console.log("name", name);
-
-    if (name.length > 1 && description.length > 5) {
-      addGood(id, name, description);
+  hanleOpenAddGoodModal = isOpen => {
+    if (this.state.isOpen === false) {
+      isOpen = true;
 
       this.setState({
-        name: "",
-        description: ""
+        isOpen: isOpen
+      });
+    }
+  };
+
+  handleCloseAddGoodModal = isOpen => {
+    if (this.state.isOpen === true) {
+      isOpen = false;
+
+      this.setState({
+        isOpen: isOpen
       });
     }
   };
 
   render() {
-    const { goods, removeGood } = this.props;
+    const { goods, addGood, removeGood } = this.props;
+    const { isOpen } = this.state;
 
     return (
       <div>
-        <input placeholder="name" onChange={this.handleInputNameChange} />
-        <input
-          placeholder="description"
-          onChange={this.handleInputDescChange}
+        <button onClick={this.hanleOpenAddGoodModal}>Add +</button>
+        <Modal
+          addGood={addGood}
+          goods={goods}
+          isOpen={isOpen}
+          onClose={this.handleCloseAddGoodModal}
         />
-        <button type="submit" onClick={this.handleAddGood.bind(this)}>
-          Add +
-        </button>
-        <ListInfo goods={goods} removeGood={removeGood}/>
+        <ListInfo goods={goods} removeGood={removeGood} />
       </div>
     );
   }
 }
+
+Content.propTypes = {
+  goods: PropTypes.array,
+  addGood: PropTypes.func,
+  removeGood: PropTypes.func
+};
 
 export default connect(
   state => ({
