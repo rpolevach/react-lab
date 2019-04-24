@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-const Item = ({ id, name, description, removeGood }) => (
+const Item = ({ id, name, description, removeGood, editItem }) => (
   <li className="good-item">
     <span>{name}</span>
     <span>{description}</span>
     <button onClick={() => removeGood(id)}>del</button>
+    <button onClick={() => editItem(id, name, description)}>edit</button>
   </li>
 );
 

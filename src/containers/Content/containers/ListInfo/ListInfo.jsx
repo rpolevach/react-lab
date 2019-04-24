@@ -1,20 +1,81 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Item from "./components/Item";
+import EditModal from "../modal/EditModal";
 
-const ListInfo = ({ goods, removeGood }) => (
-  <ul className="ListInfo">
-    {goods.map(({ id, name, description }) => (
-      <Item
-        key={id}
-        name={name}
-        description={description}
-        removeGood={removeGood}
-        id={id}
-      />
-    ))}
-  </ul>
-);
+class ListInfo extends Component {
+  state = {
+    id: 0,
+    name: "",
+    desc: "",
+    changeSectionIsOpen: false,
+    editName: "",
+    editDesc: ""
+  };
+
+  editItem = (id, name, description) => {
+    this.setState({
+      changeSectionIsOpen: true,
+      id: id,
+      editName: name,
+      editDesc: description
+    });
+  };
+
+  onEditItemAccepted = () => {
+    const { editGood } = this.props;
+    const { id, editName, editDesc } = this.state;
+
+    editGood(id, editName, editDesc);
+
+    this.setState({
+      changeSectionIsOpen: false
+    });
+  };
+
+  handleOnChangeName = ({ target: { value } }) => {
+    this.setState({
+      editName: value
+    });
+  };
+
+  handleOnChangeDesc = ({ target: { value } }) => {
+    this.setState({
+      editDesc: value
+    });
+  };
+
+  render() {
+    const { goods, removeGood } = this.props;
+    const { editName, editDesc } = this.state;
+
+    return (
+      <div>
+        <ul className="ListInfo">
+          {goods.map(({ id, name, description }) => (
+            <Item
+              key={id}
+              name={name}
+              description={description}
+              removeGood={removeGood}
+              id={id}
+              editItem={this.editItem}
+            />
+          ))}
+        </ul>
+        <EditModal
+          changeSectionIsOpen={this.state.changeSectionIsOpen}
+          name={editName}
+          description={editDesc}
+          id={goods.id}
+          onEditItemAccepted={this.onEditItemAccepted}
+          handleOnChangeName={this.handleOnChangeName}
+          handleOnChangeDesc={this.handleOnChangeDesc}
+        />
+      </div>
+    );
+  }
+}
 
 ListInfo.propTypes = {
   goods: PropTypes.array,
