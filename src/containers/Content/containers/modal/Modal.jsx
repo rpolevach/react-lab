@@ -8,41 +8,17 @@ class Modal extends React.Component {
     description: ""
   };
 
-  handleInputNameChange = ({ target: { value } }) =>
-    this.setState({
-      name: value
-    });
-
-  handleInputDescChange = ({ target: { value } }) =>
-    this.setState({
-      description: value
-    });
-
-  handleAddGood = ({ key }) => {
-    console.log(this.props.state);
-    const { name, description } = this.state;
-    const { goods, addGood } = this.props;
-    let id = 1;
-
-    if (goods.length != 0) {
-      id = goods[goods.length - 1].id + 1;
-    }
-
-    if (name.length > 1 && description.length > 5 && key === "Enter") {
-      addGood(id, name, description);
-
-      this.setState({
-        name: "",
-        description: ""
-      });
-    }
-  };
-
   handleCloseAddGoodModal = () => {
     this.props.onClose();
   };
 
   render() {
+    const {
+      handleInputNameChange,
+      handleInputDescChange,
+      handleAddGood
+    } = this.props;
+
     return (
       <>
         {this.props.isOpen && (
@@ -53,19 +29,16 @@ class Modal extends React.Component {
                   <div className="modalTitle">{this.props.title}</div>
                 </div>
                 <div className="modalBody">
-                  <input
-                    placeholder="name"
-                    onChange={this.handleInputNameChange}
-                  />
+                  <input placeholder="name" onChange={handleInputNameChange} />
                   <input
                     placeholder="description"
-                    onChange={this.handleInputDescChange}
-                    onKeyPress={this.handleAddGood}
+                    onChange={handleInputDescChange}
+                    // onKeyPress={this.handleAddGood}
                   />
                 </div>
                 <div className="modalFooter">
                   <button onClick={this.handleCloseAddGoodModal}>Cancel</button>
-                  <button onClick={() => this.handleAddGood({ key: "Enter" })}>
+                  <button onClick={() => handleAddGood({ key: "Enter" })}>
                     Submit
                   </button>
                 </div>

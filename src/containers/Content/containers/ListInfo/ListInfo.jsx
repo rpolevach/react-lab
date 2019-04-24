@@ -17,20 +17,20 @@ class ListInfo extends Component {
     this.setState({
       changeSectionIsOpen: true,
       id: id,
-      name: name,
+      editName: name,
       editDesc: description
     });
   };
 
   onEditItemAccepted = () => {
-    console.log(this.state);
-
     const { editGood } = this.props;
     const { id, editName, editDesc } = this.state;
 
     editGood(id, editName, editDesc);
 
-    console.log(this.props.goods);
+    this.setState({
+      changeSectionIsOpen: false
+    });
   };
 
   handleOnChangeName = ({ target: { value } }) => {

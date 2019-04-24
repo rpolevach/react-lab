@@ -20,19 +20,14 @@ class EditModal extends Component {
                 <div className="modalTitle">{id}</div>
               </div>
               <div className="modalBody">
+                <input placeholder={name} onChange={handleOnChangeName} />
                 <input
-                  type="text"
-                  placeholder={name}
-                  onChange={handleOnChangeName}
-                />
-                <input
-                  type="text"
                   placeholder={description}
                   onChange={handleOnChangeDesc}
                 />
               </div>
               <div className="modalFooter">
-                <button>Cancel</button>
+                <button onClick={!changeSectionIsOpen}>Cancel</button>
                 <button onClick={onEditItemAccepted}>Submit</button>
               </div>
             </div>
