@@ -2,7 +2,15 @@ import React, { Component } from "react";
 
 class EditModal extends Component {
   render() {
-    const { name, description, id, changeSectionIsOpen } = this.props;
+    const {
+      name,
+      description,
+      id,
+      changeSectionIsOpen,
+      onEditItemAccepted,
+      handleOnChangeName,
+      handleOnChangeDesc
+    } = this.props;
     return (
       <>
         {changeSectionIsOpen && (
@@ -12,12 +20,20 @@ class EditModal extends Component {
                 <div className="modalTitle">{id}</div>
               </div>
               <div className="modalBody">
-                <input value={name} />
-                <input value={description} />
+                <input
+                  type="text"
+                  placeholder={name}
+                  onChange={handleOnChangeName}
+                />
+                <input
+                  type="text"
+                  placeholder={description}
+                  onChange={handleOnChangeDesc}
+                />
               </div>
               <div className="modalFooter">
                 <button>Cancel</button>
-                <button>Submit</button>
+                <button onClick={onEditItemAccepted}>Submit</button>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ListInfo from "./containers/ListInfo/ListInfo";
 import Modal from "./containers/modal/Modal";
-import { addGood, removeGood } from "../../actions/actionCreator";
+import { addGood, removeGood, editGood } from "../../actions/actionCreator";
 
 class Content extends Component {
   state = {
@@ -31,7 +31,7 @@ class Content extends Component {
   };
 
   render() {
-    const { goods, addGood, removeGood } = this.props;
+    const { goods, addGood, removeGood, editGood } = this.props;
     const { isOpen } = this.state;
 
     return (
@@ -43,7 +43,7 @@ class Content extends Component {
           isOpen={isOpen}
           onClose={this.handleCloseAddGoodModal}
         />
-        <ListInfo goods={goods} removeGood={removeGood} />
+        <ListInfo goods={goods} removeGood={removeGood} editGood={editGood} />
       </div>
     );
   }
@@ -59,5 +59,5 @@ export default connect(
   state => ({
     goods: state.goods
   }),
-  { addGood, removeGood }
+  { addGood, removeGood, editGood }
 )(Content);

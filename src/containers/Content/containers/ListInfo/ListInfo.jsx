@@ -6,19 +6,43 @@ import EditModal from "../modal/EditModal";
 class ListInfo extends Component {
   state = {
     id: 0,
+    name: "",
+    desc: "",
+    changeSectionIsOpen: false,
     editName: "",
-    editDesc: "",
-    changeSectionIsOpen: false
+    editDesc: ""
   };
 
-  editItem = (name, description) => {
+  editItem = (id, name, description) => {
     this.setState({
       changeSectionIsOpen: true,
-      editName: name,
+      id: id,
+      name: name,
       editDesc: description
     });
+  };
 
+  onEditItemAccepted = () => {
     console.log(this.state);
+
+    const { editGood } = this.props;
+    const { id, editName, editDesc } = this.state;
+
+    editGood(id, editName, editDesc);
+
+    console.log(this.props.goods);
+  };
+
+  handleOnChangeName = ({ target: { value } }) => {
+    this.setState({
+      editName: value
+    });
+  };
+
+  handleOnChangeDesc = ({ target: { value } }) => {
+    this.setState({
+      editDesc: value
+    });
   };
 
   render() {
@@ -44,6 +68,9 @@ class ListInfo extends Component {
           name={editName}
           description={editDesc}
           id={goods.id}
+          onEditItemAccepted={this.onEditItemAccepted}
+          handleOnChangeName={this.handleOnChangeName}
+          handleOnChangeDesc={this.handleOnChangeDesc}
         />
       </div>
     );

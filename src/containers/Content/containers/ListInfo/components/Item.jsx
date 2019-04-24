@@ -6,7 +6,7 @@ const Item = ({ id, name, description, removeGood, editItem }) => (
     <span>{name}</span>
     <span>{description}</span>
     <button onClick={() => removeGood(id)}>del</button>
-    <button onClick={() => editItem(name, description)}>edit</button>
+    <button onClick={() => editItem(id, name, description)}>edit</button>
   </li>
 );
 
