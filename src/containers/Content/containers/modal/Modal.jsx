@@ -22,7 +22,11 @@ class Modal extends React.Component {
     console.log(this.props.state);
     const { name, description } = this.state;
     const { goods, addGood } = this.props;
-    const id = goods[goods.length - 1].id + 1;
+    let id = 1;
+
+    if (goods.length != 0) {
+      id = goods[goods.length - 1].id + 1;
+    }
 
     if (name.length > 1 && description.length > 5 && key === "Enter") {
       addGood(id, name, description);
