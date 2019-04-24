@@ -8,7 +8,7 @@ import "./styled/Content.css";
 
 class Content extends Component {
   state = {
-    isOpen: true,
+    isOpen: false,
     name: "",
     description: ""
   };
