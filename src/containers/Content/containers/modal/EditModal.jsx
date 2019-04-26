@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../../styled/EditModal.css";
 
 class EditModal extends Component {
   render() {
@@ -9,7 +10,8 @@ class EditModal extends Component {
       changeSectionIsOpen,
       onEditItemAccepted,
       handleOnChangeName,
-      handleOnChangeDesc
+      handleOnChangeDesc,
+      onCloseEditModal
     } = this.props;
     return (
       <>
@@ -27,7 +29,7 @@ class EditModal extends Component {
                 />
               </div>
               <div className="modalFooter">
-                <button onClick={changeSectionIsOpen}>Cancel</button>
+                <button onClick={onCloseEditModal}>Cancel</button>
                 <button onClick={onEditItemAccepted}>Submit</button>
               </div>
             </div>

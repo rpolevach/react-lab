@@ -1,0 +1,27 @@
+.modalWindow {
+  border: 2px solid black;
+  border-radius: 5px;
+  position: absolute;
+  width: 300px;
+  height: 250px;
+  top: 30%;
+  left: 37%;
+  background-color: gray;
+}
+
+.modalHeader {
+  text-align: center;
+  font-size: 25px;
+}
+
+.modalBody {
+  padding-top: 15px;
+  text-align: center;
+}
+.modalFooter {
+  text-align: center;
+}
+
+input {
+  margin: 15px;
+}

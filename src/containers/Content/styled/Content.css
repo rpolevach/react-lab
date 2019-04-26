@@ -1,0 +1,20 @@
+.Content-section #createGoodButton {
+  text-decoration: none;
+  background: #228a19;
+  outline: none;
+}
+
+.Content-section #createGoodButton:hover {
+  background: #38c42b;
+}
+
+.Content-section #createGoodButton:active {
+  background: #13520d;
+}
+
+.Content-section {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Item from "./components/Item";
 import EditModal from "../modal/EditModal";
+import "../../styled/ListInfo.css";
 
 class ListInfo extends Component {
   state = {
@@ -26,11 +27,13 @@ class ListInfo extends Component {
     const { editGood } = this.props;
     const { id, editName, editDesc } = this.state;
 
-    editGood(id, editName, editDesc);
+    if (editName.length > 1 && editDesc.length > 5) {
+      editGood(id, editName, editDesc);
 
-    this.setState({
-      changeSectionIsOpen: false
-    });
+      this.setState({
+        changeSectionIsOpen: false
+      });
+    }
   };
 
   handleOnChangeName = ({ target: { value } }) => {
@@ -51,12 +54,18 @@ class ListInfo extends Component {
     });
   };
 
+  onCloseEditModal = () => {
+    this.setState({
+      changeSectionIsOpen: false
+    });
+  };
+
   render() {
     const { goods, removeGood } = this.props;
     const { editName, editDesc } = this.state;
 
     return (
-      <div>
+      <div className="listSection">
         <ul className="ListInfo">
           {goods.map(({ id, name, description }) => (
             <Item
@@ -78,6 +87,7 @@ class ListInfo extends Component {
           onEditItemAccepted={this.onEditItemAccepted}
           handleOnChangeName={this.handleOnChangeName}
           handleOnChangeDesc={this.handleOnChangeDesc}
+          onCloseEditModal={this.onCloseEditModal}
         />
       </div>
     );

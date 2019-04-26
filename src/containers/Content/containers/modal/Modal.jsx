@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Portal from "./components/Portal";
+import "../../styled/Modal.css";
 
 class Modal extends React.Component {
   state = {
@@ -23,24 +24,35 @@ class Modal extends React.Component {
       <>
         {this.props.isOpen && (
           <Portal>
-            <div className="modalOverlay">
-              <div className="modalWindow">
-                <div className="modalHeader">
-                  <div className="modalTitle">{this.props.title}</div>
-                </div>
-                <div className="modalBody">
-                  <input placeholder="name" onChange={handleInputNameChange} />
-                  <input
-                    placeholder="description"
-                    onChange={handleInputDescChange}
-                    // onKeyPress={this.handleAddGood}
-                  />
-                </div>
-                <div className="modalFooter">
-                  <button onClick={this.handleCloseAddGoodModal}>Cancel</button>
-                  <button onClick={() => handleAddGood({ key: "Enter" })}>
-                    Submit
-                  </button>
+            <div className="ordModal">
+              <div className="modalOverlay">
+                <div className="modalWindow">
+                  <div className="modalHeader">
+                    <div className="modalTitle">Create a good</div>
+                  </div>
+                  <div className="modalBody">
+                    <div>
+                      <input
+                        placeholder="name"
+                        onChange={handleInputNameChange}
+                      />
+                    </div>
+                    <div>
+                      <input
+                        placeholder="description"
+                        onChange={handleInputDescChange}
+                        onKeyPress={handleAddGood}
+                      />
+                    </div>
+                  </div>
+                  <div className="modalFooter">
+                    <button onClick={this.handleCloseAddGoodModal}>
+                      Cancel
+                    </button>
+                    <button onClick={() => handleAddGood({ key: "Enter" })}>
+                      Submit
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
