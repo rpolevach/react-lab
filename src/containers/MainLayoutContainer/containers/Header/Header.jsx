@@ -7,7 +7,11 @@ const Header = ({ isSignUpFormOpen, openSignUpForm, addUser }) => {
     <div>
       <div className="header">ShopName</div>
       <button onClick={openSignUpForm}>Sign up</button>
-      {isSignUpFormOpen && <SignUpForm addUser={addUser} />}
+      <SignUpForm
+        addUser={addUser}
+        openSignUpForm={openSignUpForm}
+        isSignUpFormOpen={isSignUpFormOpen}
+      />
     </div>
   );
 };

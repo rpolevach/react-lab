@@ -1,6 +1,6 @@
 import React from "react";
 
-const SignUpForm = ({ addUser }) => {
+const SignUpForm = ({ addUser, openSignUpForm, isSignUpFormOpen }) => {
   var funcState = {
     userName: "",
     password: "",
@@ -20,37 +20,46 @@ const SignUpForm = ({ addUser }) => {
   };
 
   return (
-    <div>
-      <h3>Enter the form</h3>
-      <input placeholder="username" onChange={handleChangeName} />
-      <input placeholder="password" onChange={handleChangePassword} />
-      <p>
-        <input
-          type="radio"
-          name="status"
-          value="true"
-          onChange={handleChangeStatus}
-        />
-        Admin
-      </p>
-      <p>
-        <input
-          type="radio"
-          name="status"
-          value="false"
-          onChange={handleChangeStatus}
-        />
-        User
-      </p>
-      <button
-        type="submit"
-        onClick={() =>
-          addUser(funcState.userName, funcState.password, funcState.isAdmin)
-        }
-      >
-        Sign Up
-      </button>
-    </div>
+    <>
+      {isSignUpFormOpen && (
+        <div>
+          <h3>Enter the form</h3>
+          <input placeholder="username" onChange={handleChangeName} />
+          <input placeholder="password" onChange={handleChangePassword} />
+          <p>
+            <input
+              type="radio"
+              name="status"
+              value="true"
+              onChange={handleChangeStatus}
+            />
+            Admin
+          </p>
+          <p>
+            <input
+              type="radio"
+              name="status"
+              value="false"
+              onChange={handleChangeStatus}
+            />
+            User
+          </p>
+          <button
+            type="submit"
+            onClick={() => {
+              addUser(
+                funcState.userName,
+                funcState.password,
+                funcState.isAdmin
+              );
+              openSignUpForm();
+            }}
+          >
+            Sign Up
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 
