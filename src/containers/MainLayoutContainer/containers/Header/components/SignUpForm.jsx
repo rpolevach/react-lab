@@ -1,7 +1,7 @@
 import React from "react";
 
-const SignUpForm = ({ addUser, openSignUpForm, isSignUpFormOpen }) => {
-  var funcState = {
+const SignUpForm = ({ addUser, openSignForm, isSignFormOpen, isSignUp }) => {
+  let funcState = {
     userName: "",
     password: "",
     isAdmin: ""
@@ -21,42 +21,49 @@ const SignUpForm = ({ addUser, openSignUpForm, isSignUpFormOpen }) => {
 
   return (
     <>
-      {isSignUpFormOpen && (
+      {isSignFormOpen && (
         <div>
           <h3>Enter the form</h3>
           <input placeholder="username" onChange={handleChangeName} />
           <input placeholder="password" onChange={handleChangePassword} />
-          <p>
-            <input
-              type="radio"
-              name="status"
-              value="true"
-              onChange={handleChangeStatus}
-            />
-            Admin
-          </p>
-          <p>
-            <input
-              type="radio"
-              name="status"
-              value="false"
-              onChange={handleChangeStatus}
-            />
-            User
-          </p>
-          <button
-            type="submit"
-            onClick={() => {
-              addUser(
-                funcState.userName,
-                funcState.password,
-                funcState.isAdmin
-              );
-              openSignUpForm();
-            }}
-          >
-            Sign Up
-          </button>
+          {isSignUp ? (
+            <div>
+              <p>
+                <input
+                  type="radio"
+                  name="status"
+                  value="true"
+                  onChange={handleChangeStatus}
+                />
+                Admin
+              </p>
+              <p>
+                <input
+                  type="radio"
+                  name="status"
+                  value="false"
+                  onChange={handleChangeStatus}
+                />
+                User
+              </p>
+
+              <button
+                type="submit"
+                onClick={() => {
+                  addUser(
+                    funcState.userName,
+                    funcState.password,
+                    funcState.isAdmin
+                  );
+                  openSignForm();
+                }}
+              >
+                Sign Up
+              </button>
+            </div>
+          ) : (
+            <button type="submit">Sign In</button>
+          )}
         </div>
       )}
     </>

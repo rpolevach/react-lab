@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Header from "./containers/Header/Header";
 import Content from "../Content/Content";
@@ -8,25 +7,38 @@ import "./styled/MainLayout.css";
 
 class MainLayoutContainer extends Component {
   state = {
-    isSignUpFormOpen: false,
+    isSignFormOpen: false,
+    isSignUp: false,
     userName: "",
     password: ""
   };
 
-  handleOpenSignUpForm = () =>
+  handleOpenSignForm = isSignUp => {
+    if (isSignUp) {
+      this.setState({
+        isSignUp: true
+      });
+    } else {
+      this.setState({
+        isSignUp: false
+      });
+    }
+
     this.setState({
-      isSignUpFormOpen: !this.state.isSignUpFormOpen
+      isSignFormOpen: !this.state.isSignFormOpen
     });
+  };
 
   render() {
-    const { isSignUpFormOpen } = this.state;
-    const { addUser, users } = this.props;
+    const { isSignFormOpen, isSignUp } = this.state;
+    const { addUser } = this.props;
 
     return (
       <div className="mainLayout">
         <Header
-          isSignUpFormOpen={isSignUpFormOpen}
-          openSignUpForm={this.handleOpenSignUpForm}
+          isSignFormOpen={isSignFormOpen}
+          isSignUp={isSignUp}
+          openSignForm={this.handleOpenSignForm}
           addUser={addUser}
         />
         <Content />

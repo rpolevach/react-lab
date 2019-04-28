@@ -1,16 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import SignUpForm from "./components/SignUpForm";
 import "../../styled/Header.css";
 
-const Header = ({ isSignUpFormOpen, openSignUpForm, addUser }) => {
+const Header = ({ isSignFormOpen, isSignUp, openSignForm, addUser }) => {
   return (
     <div>
       <div className="header">ShopName</div>
-      <button onClick={openSignUpForm}>Sign up</button>
+      <button onClick={() => openSignForm(true)}>Open Sign Up Form</button>
+      <button onClick={() => openSignForm(false)}>Sign In</button>
       <SignUpForm
         addUser={addUser}
-        openSignUpForm={openSignUpForm}
-        isSignUpFormOpen={isSignUpFormOpen}
+        openSignForm={openSignForm}
+        isSignFormOpen={isSignFormOpen}
+        isSignUp={isSignUp}
       />
     </div>
   );
