@@ -1,0 +1,38 @@
+.good-item {
+  border: 2px solid black;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 10px;
+  margin: 15px;
+  width: 25%;
+  background-color: #b0abab;
+}
+
+span {
+  padding: 15px;
+}
+
+.item-wrapper {
+  display: inline;
+}
+
+.button-group {
+  text-align: right;
+}
+
+button {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.name-section {
+  text-align: center;
+  font-size: 25px;
+}
+
+.description-section {
+  text-align: left;
+  font-size: 15px;
+  padding-top: 30px;
+}

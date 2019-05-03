@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import ListInfo from './containers/ListInfo/ListInfo';
-import { addGood, removeGood } from "../../actions/actionCreator";
+import ListInfo from "./containers/ListInfo/ListInfo";
+import Modal from "./containers/modal/Modal";
+import { addGood, removeGood, editGood } from "../../actions/actionCreator";
+import "./styled/Content.css";
 
 class Content extends Component {
   state = {
@@ -43,16 +45,23 @@ class Content extends Component {
     const { goods, removeGood } = this.props;
 
     return (
-      <div>
-        <input placeholder="name" onChange={this.handleInputNameChange} />
-        <input
-          placeholder="description"
-          onChange={this.handleInputDescChange}
+      <div className="Content-section">
+        <button id="createGoodButton" onClick={this.hanleOpenAddGoodModal}>
+          Add +
+        </button>
+        <Modal
+          addGood={addGood}
+          goods={goods}
+          isOpen={isOpen}
+          onClose={this.handleCloseAddGoodModal}
+          handleInputNameChange={this.handleInputNameChange}
+          handleInputDescChange={this.handleInputDescChange}
+          handleAddGood={this.handleAddGood}
         />
         <button type="submit" onClick={this.handleAddGood.bind(this)}>
           Add +
         </button>
-        <ListInfo goods={goods} removeGood={removeGood}/>
+        <ListInfo goods={goods} removeGood={removeGood} />
       </div>
     );
   }
