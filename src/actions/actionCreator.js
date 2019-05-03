@@ -1,4 +1,4 @@
-import { ADD_GOOD, REMOVE_GOOD, EDIT_GOOD } from "../constants";
+import { ADD_GOOD, REMOVE_GOOD, EDIT_GOOD, ADD_USER } from "../constants";
 
 export const addGood = (id, name, description) => ({
   type: ADD_GOOD,
@@ -17,4 +17,11 @@ export const editGood = (id, name, description) => ({
   id,
   name,
   description
+});
+
+export const addUser = (username, password, isAdmin) => ({
+  type: ADD_USER,
+  username,
+  password,
+  isAdmin
 });
