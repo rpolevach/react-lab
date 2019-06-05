@@ -55,7 +55,7 @@ class Content extends Component {
   };
 
   render() {
-    const { goods, removeGood } = this.props;
+    const { goods, removeGood, editGood } = this.props;
 
     return (
       <div className="Content-section">
@@ -74,7 +74,7 @@ class Content extends Component {
         <button type="submit" onClick={this.handleAddGood.bind(this)}>
           Add +
         </button>
-        <ListInfo goods={goods} removeGood={removeGood} />
+        <ListInfo goods={goods} removeGood={removeGood} editGood={editGood} />
       </div>
     );
   }
@@ -84,5 +84,5 @@ export default connect(
   state => ({
     goods: state.goods
   }),
-  { addGood, removeGood }
+  { addGood, removeGood, editGood }
 )(Content);

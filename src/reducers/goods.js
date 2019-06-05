@@ -1,4 +1,4 @@
-import { ADD_GOOD, REMOVE_GOOD } from "../constants";
+import { ADD_GOOD, REMOVE_GOOD, EDIT_GOOD } from "../constants";
 
 const GOODS = [
   {
@@ -36,6 +36,11 @@ const goods = (state = GOODS, { id, name, description, type }) => {
       ];
     case REMOVE_GOOD:
       return [...state].filter(task => task.id !== id);
+    case EDIT_GOOD:
+      const index = state.findIndex(task => task.id === id);
+      state[index].name = name;
+      state[index].description = description;
+      return state;
     default:
       return state;
   }
