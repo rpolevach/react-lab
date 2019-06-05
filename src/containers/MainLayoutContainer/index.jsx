@@ -13,7 +13,7 @@ class MainLayoutContainer extends Component {
   render() {
     return (
       <div className="mainLayout">
-        <Header onAuth={this.onAuth} />
+        <Header onAuth={this.onAuth} isAuth={this.state.isAuth} />
         <Content isAuth={this.state.isAuth} />
       </div>
     );
