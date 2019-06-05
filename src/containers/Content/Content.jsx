@@ -8,6 +8,7 @@ import "./styled/Content.css";
 
 class Content extends Component {
   state = {
+    isOpen: false,
     name: "",
     description: ""
   };
@@ -52,7 +53,7 @@ class Content extends Component {
         <Modal
           addGood={addGood}
           goods={goods}
-          isOpen={isOpen}
+          isOpen={this.state.isOpen}
           onClose={this.handleCloseAddGoodModal}
           handleInputNameChange={this.handleInputNameChange}
           handleInputDescChange={this.handleInputDescChange}
