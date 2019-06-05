@@ -1,3 +1,2 @@
-Done
-
-Fund for next ex
+asdasd
+git
