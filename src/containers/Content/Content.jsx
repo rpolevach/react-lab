@@ -8,6 +8,7 @@ import "./styled/Content.css";
 
 class Content extends Component {
   state = {
+    isOpen: false,
     name: "",
     description: ""
   };
@@ -29,16 +30,28 @@ class Content extends Component {
     const { addGood, goods } = this.props;
 
     const id = goods[goods.length - 1].id + 1;
-    console.log("name", name);
 
     if (name.length > 1 && description.length > 5) {
       addGood(id, name, description);
 
       this.setState({
         name: "",
-        description: ""
+        description: "",
+        isOpen: false
       });
     }
+  };
+
+  hanleOpenAddGoodModal = () => {
+    this.setState({
+      isOpen: true
+    });
+  };
+
+  handleCloseAddGoodModal = () => {
+    this.setState({
+      isOpen: false
+    });
   };
 
   render() {
@@ -52,7 +65,7 @@ class Content extends Component {
         <Modal
           addGood={addGood}
           goods={goods}
-          isOpen={isOpen}
+          isOpen={this.state.isOpen}
           onClose={this.handleCloseAddGoodModal}
           handleInputNameChange={this.handleInputNameChange}
           handleInputDescChange={this.handleInputDescChange}
