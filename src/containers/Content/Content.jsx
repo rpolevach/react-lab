@@ -49,13 +49,24 @@ class Content extends Component {
       />
     );
 
-    return (
-      <div className="Content-section">
+    const auth = this.props.isAuth && (
+      <div>
         <button id="createGoodButton" onClick={this.onOpen}>
           Add +
         </button>
+      </div>
+    );
+
+    return (
+      <div className="Content-section">
+        {auth}
         {modal}
-        <ListInfo goods={goods} removeGood={removeGood} editGood={editGood} />
+        <ListInfo
+          goods={goods}
+          removeGood={removeGood}
+          editGood={editGood}
+          isAuth={this.props.isAuth}
+        />
       </div>
     );
   }

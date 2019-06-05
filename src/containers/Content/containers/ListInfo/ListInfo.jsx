@@ -76,6 +76,7 @@ class ListInfo extends Component {
               id={id}
               editItem={this.editItem}
               closeChangeSection={this.closeChangeSection}
+              isAuth={this.props.isAuth}
             />
           ))}
         </ul>

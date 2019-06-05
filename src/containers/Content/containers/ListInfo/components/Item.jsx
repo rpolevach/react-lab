@@ -8,7 +8,8 @@ const Item = ({
   description,
   removeGood,
   editItem,
-  closeChangeSection
+  closeChangeSection,
+  isAuth
 }) => (
   <li className="good-item">
     <div className="item-wrapper">
@@ -18,17 +19,19 @@ const Item = ({
       <div className="description-section">
         <span>{description}</span>
       </div>
-      <div className="button-group">
-        <button
-          onClick={() => {
-            removeGood(id);
-            closeChangeSection();
-          }}
-        >
-          delete
-        </button>
-        <button onClick={() => editItem(id, name, description)}>edit</button>
-      </div>
+      {isAuth && (
+        <div className="button-group">
+          <button
+            onClick={() => {
+              removeGood(id);
+              closeChangeSection();
+            }}
+          >
+            delete
+          </button>
+          <button onClick={() => editItem(id, name, description)}>edit</button>
+        </div>
+      )}
     </div>
   </li>
 );

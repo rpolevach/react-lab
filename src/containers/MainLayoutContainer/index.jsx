@@ -1,55 +1,23 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import Header from "./containers/Header/Header";
 import Content from "../Content/Content";
-import { addUser } from "../../actions/actionCreator";
 import "./styled/MainLayout.css";
 
 class MainLayoutContainer extends Component {
   state = {
-    isSignFormOpen: false,
-    isSignUp: false,
-    userName: "",
-    password: ""
+    isAuth: false
   };
 
-  handleOpenSignForm = isSignUp => {
-    if (isSignUp) {
-      this.setState({
-        isSignUp: true
-      });
-    } else {
-      this.setState({
-        isSignUp: false
-      });
-    }
-
-    this.setState({
-      isSignFormOpen: !this.state.isSignFormOpen
-    });
-  };
+  onAuth = () => this.setState({ isAuth: !this.state.isAuth });
 
   render() {
-    const { isSignFormOpen, isSignUp } = this.state;
-    const { addUser } = this.props;
-
     return (
       <div className="mainLayout">
-        <Header
-          isSignFormOpen={isSignFormOpen}
-          isSignUp={isSignUp}
-          openSignForm={this.handleOpenSignForm}
-          addUser={addUser}
-        />
-        <Content />
+        <Header onAuth={this.onAuth} />
+        <Content isAuth={this.state.isAuth} />
       </div>
     );
   }
 }
 
-export default connect(
-  state => ({
-    users: state.users
-  }),
-  { addUser }
-)(MainLayoutContainer);
+export default MainLayoutContainer;
