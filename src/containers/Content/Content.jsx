@@ -42,6 +42,18 @@ class Content extends Component {
     }
   };
 
+  hanleOpenAddGoodModal = () => {
+    this.setState({
+      isOpen: true
+    });
+  };
+
+  handleCloseAddGoodModal = () => {
+    this.setState({
+      isOpen: false
+    });
+  };
+
   render() {
     const { goods, removeGood } = this.props;
 

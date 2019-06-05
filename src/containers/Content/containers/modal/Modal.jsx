@@ -23,40 +23,36 @@ class Modal extends React.Component {
     return (
       <>
         {this.props.isOpen && (
-          <Portal>
-            <div className="ordModal">
-              <div className="modalOverlay">
-                <div className="modalWindow">
-                  <div className="modalHeader">
-                    <div className="modalTitle">Create a good</div>
+          <div className="ordModal">
+            <div className="modalOverlay">
+              <div className="modalWindow">
+                <div className="modalHeader">
+                  <div className="modalTitle">Create a good</div>
+                </div>
+                <div className="modalBody">
+                  <div>
+                    <input
+                      placeholder="name"
+                      onChange={handleInputNameChange}
+                    />
                   </div>
-                  <div className="modalBody">
-                    <div>
-                      <input
-                        placeholder="name"
-                        onChange={handleInputNameChange}
-                      />
-                    </div>
-                    <div>
-                      <input
-                        placeholder="description"
-                        onChange={handleInputDescChange}
-                        onKeyPress={handleAddGood}
-                      />
-                    </div>
+                  <div>
+                    <input
+                      placeholder="description"
+                      onChange={handleInputDescChange}
+                      onKeyPress={handleAddGood}
+                    />
                   </div>
-                  <div className="modalFooter">
-                    <button onClick={this.handleCloseAddGoodModal}>
-                      Cancel
-                    </button>
-                    <button onClick={() => handleAddGood({ key: "Enter" })}>
-                      Submit
-                    </button>
-                  </div>
+                </div>
+                <div className="modalFooter">
+                  <button onClick={this.handleCloseAddGoodModal}>Cancel</button>
+                  <button onClick={() => handleAddGood({ key: "Enter" })}>
+                    Submit
+                  </button>
                 </div>
               </div>
             </div>
-          </Portal>
+          </div>
         )}
       </>
     );
