@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ListInfo from "./containers/ListInfo/ListInfo";
 import Modal from "./containers/modal/Modal";
@@ -8,72 +7,54 @@ import "./styled/Content.css";
 
 class Content extends Component {
   state = {
-    isOpen: false,
     name: "",
-    description: ""
+    description: "",
+    isOpen: false
   };
 
-  handleInputNameChange = ({ target: { value } }) => {
-    this.setState({
-      name: value
-    });
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleInputDescChange = ({ target: { value } }) => {
-    this.setState({
-      description: value
-    });
-  };
-
-  handleAddGood = () => {
+  onAddGood = () => {
     const { name, description } = this.state;
     const { addGood, goods } = this.props;
 
     const id = goods[goods.length - 1].id + 1;
-    console.log("name", name);
 
     if (name.length > 1 && description.length > 5) {
       addGood(id, name, description);
 
       this.setState({
         name: "",
-        description: ""
+        description: "",
+        isOpen: false
       });
     }
   };
 
-  hanleOpenAddGoodModal = () => {
-    this.setState({
-      isOpen: true
-    });
-  };
+  onOpen = () => this.setState({ isOpen: true });
 
-  handleCloseAddGoodModal = () => {
-    this.setState({
-      isOpen: false
-    });
-  };
+  onClose = () => this.setState({ isOpen: false });
 
   render() {
     const { goods, removeGood, editGood } = this.props;
 
+    const modal = this.state.isOpen && (
+      <Modal
+        onClose={this.onClose}
+        onChange={this.onChange}
+        onAddGood={this.onAddGood}
+        isOpen={this.state.isOpen}
+      />
+    );
+
     return (
       <div className="Content-section">
-        <button id="createGoodButton" onClick={this.hanleOpenAddGoodModal}>
+        <button id="createGoodButton" onClick={this.onOpen}>
           Add +
         </button>
-        <Modal
-          addGood={addGood}
-          goods={goods}
-          isOpen={this.state.isOpen}
-          onClose={this.handleCloseAddGoodModal}
-          handleInputNameChange={this.handleInputNameChange}
-          handleInputDescChange={this.handleInputDescChange}
-          handleAddGood={this.handleAddGood}
-        />
-        <button type="submit" onClick={this.handleAddGood.bind(this)}>
-          Add +
-        </button>
+        {modal}
         <ListInfo goods={goods} removeGood={removeGood} editGood={editGood} />
       </div>
     );

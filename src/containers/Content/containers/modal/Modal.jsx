@@ -1,60 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Portal from "./components/Portal";
 import "../../styled/Modal.css";
 
 class Modal extends React.Component {
-  state = {
-    name: "",
-    description: ""
-  };
-
-  handleCloseAddGoodModal = () => {
-    this.props.onClose();
-  };
-
   render() {
-    const {
-      handleInputNameChange,
-      handleInputDescChange,
-      handleAddGood
-    } = this.props;
+    const { onAddGood, onChange, onClose } = this.props;
 
     return (
-      <>
-        {this.props.isOpen && (
-          <div className="ordModal">
-            <div className="modalOverlay">
-              <div className="modalWindow">
-                <div className="modalHeader">
-                  <div className="modalTitle">Create a good</div>
-                </div>
-                <div className="modalBody">
-                  <div>
-                    <input
-                      placeholder="name"
-                      onChange={handleInputNameChange}
-                    />
-                  </div>
-                  <div>
-                    <input
-                      placeholder="description"
-                      onChange={handleInputDescChange}
-                      onKeyPress={handleAddGood}
-                    />
-                  </div>
-                </div>
-                <div className="modalFooter">
-                  <button onClick={this.handleCloseAddGoodModal}>Cancel</button>
-                  <button onClick={() => handleAddGood({ key: "Enter" })}>
-                    Submit
-                  </button>
-                </div>
+      <div className="ordModal">
+        <div className="modalOverlay">
+          <div className="modalWindow">
+            <div className="modalHeader">
+              <div className="modalTitle">Create a good</div>
+            </div>
+            <div className="modalBody">
+              <div>
+                <input placeholder="name" name="name" onChange={onChange} />
+              </div>
+              <div>
+                <input
+                  placeholder="description"
+                  name="description"
+                  onChange={onChange}
+                />
               </div>
             </div>
+            <div className="modalFooter">
+              <button onClick={onClose}>Cancel</button>
+              <button onClick={onAddGood}>Submit</button>
+            </div>
           </div>
-        )}
-      </>
+        </div>
+      </div>
     );
   }
 }
@@ -71,8 +48,7 @@ Modal.defaultProps = {
   title: "Title",
   isOpen: false,
   onCancel: () => {},
-  onSubmit: () => {},
-  children: null
+  onSubmit: () => {}
 };
 
 export default Modal;
